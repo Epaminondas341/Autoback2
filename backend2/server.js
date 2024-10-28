@@ -4,14 +4,15 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const errorHandler = require("./middlewares/errorHandler"); // Importar el middleware de manejo de errores
-const ateneaRoutes = require("./routes/atenea"); // Importar las rutas de Atenea
+const errorHandler = require("./middlewares/errorHandler.js"); // Asegúrate de que la ruta es correcta
+const ateneaRoutes = require("./routes/atenea"); // Asegúrate de que la ruta es correcta
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
 
 const app = express();
 
+// Middleware
 app.use(cors()); // Permitir CORS para solicitudes desde el frontend
 app.use(express.json()); // Middleware para parsear JSON
 
@@ -24,23 +25,26 @@ mongoose
   .then(() => {
     console.log("Conectado a MongoDB");
   })
-  .catch((err) => console.error("No se pudo conectar a MongoDB:", err));
+  .catch((err) => {
+    console.error("No se pudo conectar a MongoDB:", err);
+    process.exit(1); // Finaliza el proceso si no se puede conectar
+  });
 
 const PORT = process.env.PORT || 5000; // Puerto de la aplicación
 
 // Ruta de prueba para verificar que la API está funcionando
 app.get("/api/test", (req, res) => {
-  res.send("API funcionando correctamente");
+  res.json({ message: "API funcionando correctamente" }); // Respuesta en formato JSON
 });
 
 // Ruta para interactuar con el asistente Atenea
 app.get("/api/atena", (req, res) => {
-  res.send("Hola, soy Atenea, tu asistente en este proyecto.");
+  res.json({ message: "Hola, soy Atenea, tu asistente en este proyecto." }); // Respuesta en formato JSON
 });
 
 // Ruta para la raíz
 app.get("/", (req, res) => {
-  res.send("Bienvenido a mi API");
+  res.send("Bienvenido a mi API"); // Respuesta en texto plano
 });
 
 // Usar las rutas de Atenea

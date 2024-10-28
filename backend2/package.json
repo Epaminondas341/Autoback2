@@ -1,5 +1,5 @@
 {
-  "name": "autoback2",
+  "name": "autoback2-ai",
   "version": "1.0.0",
   "description": "Backend de la aplicación Autoback2",
   "main": "server.js",
@@ -14,8 +14,22 @@
     "mongoose": "^6.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.1.7"
   },
   "author": "Tu Nombre",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.x",
+    "npm": ">=6.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Epaminondas341/Autoback2.git"
+  },
+  "keywords": [
+    "API",
+    "Express",
+    "MongoDB",
+    "Node.js"
+  ]
 }
