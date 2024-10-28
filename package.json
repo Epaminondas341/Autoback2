@@ -1,0 +1,14 @@
+{
+  "name": "autoback2",
+  "version": "1.0.0",
+  "description": "Aplicación que incluye backend y frontend.",
+  "scripts": {
+    "start": "cd backend2 && npm start",
+    "dev": "concurrently \"cd backend2 && npm run dev\" \"cd frontend2 && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "author": "Tu Nombre",
+  "license": "ISC"
+}
