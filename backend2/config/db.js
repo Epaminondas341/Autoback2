@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+// Configuración para suprimir la advertencia de strictQuery
+mongoose.set("strictQuery", true);
+
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
