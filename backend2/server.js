@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -40,13 +41,22 @@ mongoose
 const PORT = process.env.PORT || 5000; // Puerto de la aplicación
 
 // Ruta de prueba para verificar que la API está funcionando
-app.get("/api/test", (req, res) => {
-  res.json({ message: "API funcionando correctamente" }); // Respuesta en formato JSON
+app.get("/api/atena", (req, res) => {
+  res.json({
+    message: "Soy Atenea su asistente virtual, quien lo guiara en la visita",
+  }); // Respuesta en formato JSON
+});
+
+// Ruta para el mensaje de bienvenida
+app.get("/api/welcome", (req, res) => {
+  res.json({
+    message: "Bienvenido a Autocentro, Su empresa de confianza",
+  }); // Respuesta en formato JSON
 });
 
 // Ruta para la raíz
 app.get("/", (req, res) => {
-  res.send("Bienvenido a mi API"); // Respuesta en texto plano
+  res.send("Autocentro, Su empresa de confianza"); // Respuesta en texto plano
 });
 
 // Middleware de manejo de errores

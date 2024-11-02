@@ -4,10 +4,15 @@
   "description": "Aplicación que incluye backend y frontend.",
   "scripts": {
     "start": "cd backend2 && npm start",
-    "dev": "concurrently \"cd backend2 && npm run dev\" \"cd frontend2 && npm start\""
+    "dev": "concurrently \"cd backend2 && npm run dev\" \"cd frontend2 && npm run dev\"",
+    "frontend": "cd frontend2 && vite && open-cli http://localhost:5173"
   },
   "dependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "mongoose": "^8.8.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
   },
   "author": "Tu Nombre",
   "license": "ISC"
