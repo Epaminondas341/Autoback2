@@ -11,12 +11,10 @@ const createPayroll = async (req, res) => {
       .status(201)
       .json({ message: "Registro de nómina creado con éxito.", payroll });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Error al crear el registro de nómina",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "Error al crear el registro de nómina",
+      details: error.message,
+    });
   }
 };
 
@@ -33,12 +31,10 @@ const getPayroll = async (req, res) => {
     }
     res.json(payroll);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Error al obtener el registro de nómina",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "Error al obtener el registro de nómina",
+      details: error.message,
+    });
   }
 };
 
@@ -57,12 +53,10 @@ const updatePayroll = async (req, res) => {
     }
     res.json({ message: "Registro de nómina actualizado con éxito.", payroll });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Error al actualizar el registro de nómina",
-        details: error.message,
-      });
+    res.status(500).json({
+      error: "Error al actualizar el registro de nómina",
+      details: error.message,
+    });
   }
 };
 
