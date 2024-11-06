@@ -1,11 +1,10 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const errorHandler = require("./middlewares/errorHandler.js"); // Asegúrate de que la ruta es correcta
 
-// Import Routes
+// Importar Rutas
 const authRoutes = require("./routes/authRoutes");
 const payrollRoutes = require("./routes/payrollRoutes");
 const ateneaRoutes = require("./routes/atenea"); // Asegúrate de que la ruta es correcta
@@ -20,9 +19,9 @@ app.use(cors()); // Permitir CORS para solicitudes desde el frontend
 app.use(express.json()); // Middleware para parsear JSON
 
 // Montar las rutas
-app.use("/auth", authRoutes);
-app.use("/payroll", payrollRoutes);
-app.use("/atenea", ateneaRoutes);
+app.use("/api/auth", authRoutes); // Cambié la ruta a "/api/auth"
+app.use("/api/payroll", payrollRoutes); // Cambié la ruta a "/api/payroll"
+app.use("/api/atenea", ateneaRoutes); // Cambié la ruta a "/api/atenea"
 
 // Conectar a MongoDB
 mongoose
@@ -41,16 +40,16 @@ mongoose
 const PORT = process.env.PORT || 5000; // Puerto de la aplicación
 
 // Ruta de prueba para verificar que la API está funcionando
-app.get("/api/atena", (req, res) => {
+app.get("/api/atenea", (req, res) => {
   res.json({
-    message: "Soy Atenea su asistente virtual, quien lo guiara en la visita",
+    message: "Soy Atenea su asistente virtual, quien lo guiara en la visita.",
   }); // Respuesta en formato JSON
 });
 
 // Ruta para el mensaje de bienvenida
 app.get("/api/welcome", (req, res) => {
   res.json({
-    message: "Bienvenido a Autocentro, Su empresa de confianza",
+    message: "Bienvenido",
   }); // Respuesta en formato JSON
 });
 

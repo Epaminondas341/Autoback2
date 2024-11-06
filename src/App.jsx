@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import Atenea from "./components/Atenea"; 
+import Atenea from "./components/Atenea";
 import "./styles/App.css";
 import "./styles/index.css";
 
@@ -29,7 +29,7 @@ function App() {
       .catch((error) => console.error("Error:", error));
 
     // Realiza otra solicitud al backend para obtener el mensaje del asistente
-    fetch("/api/atena")
+    fetch("/api/atenea")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

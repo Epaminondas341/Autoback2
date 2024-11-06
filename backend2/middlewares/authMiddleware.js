@@ -2,10 +2,13 @@ const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
   // Obtener el token de la cabecera de autorización
-  const token = req.headers["authorization"]?.split(" ")[1];
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1]; // Asegurarse de que el token esté presente
 
   if (!token) {
-    return res.status(403).json({ message: "Acceso denegado" });
+    return res
+      .status(403)
+      .json({ message: "Acceso denegado, token requerido" });
   }
 
   try {
@@ -16,7 +19,8 @@ const authMiddleware = (req, res, next) => {
     next();
   } catch (error) {
     // Responder con un error 401 si el token no es válido
-    res.status(401).json({ message: "Token no válido" });
+    console.error("Error al verificar el token:", error.message); // Log de error para facilitar el diagnóstico
+    return res.status(401).json({ message: "Token no válido" });
   }
 };
 

@@ -5,7 +5,7 @@ const router = Router();
 
 // Ruta de bienvenida
 router.get("/", (req, res) => {
-  res.send("Hola, soy Atenea, aquí para ayudarte.");
+  res.send("Estoy aquí para ayudarte.");
 });
 
 // Puedes agregar más rutas para funciones específicas de Atenea
