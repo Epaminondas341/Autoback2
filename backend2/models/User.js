@@ -25,7 +25,14 @@ const userSchema = new mongoose.Schema(
     // Rol del usuario, opcional, con valores predeterminados posibles
     role: {
       type: String,
-      enum: ["empleado", "administrador"], // Opcional: diferentes tipos de usuario
+      enum: [
+        "empleado",
+        "administrador",
+        "accionista",
+        "comprador",
+        "directivo",
+        "visitante",
+      ], // Opcional: diferentes tipos de usuario
       default: "empleado",
     },
   },

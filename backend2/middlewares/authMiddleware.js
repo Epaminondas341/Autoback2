@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 const authMiddleware = (req, res, next) => {
   // Obtener el token de la cabecera de autorización
   const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1]; // Asegurarse de que el token esté presente
-
-  if (!token) {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res
       .status(403)
       .json({ message: "Acceso denegado, token requerido" });
   }
+
+  const token = authHeader.split(" ")[1]; // Extraer el token después de 'Bearer'
 
   try {
     // Verificar el token

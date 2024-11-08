@@ -1,10 +1,10 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = "mi_secreto_super_seguro";
 
 // Registro de usuario
 exports.registerUser = async (req, res) => {
-  console.log("Datos de registro recibidos:", req.body);
   const { name, email, password } = req.body;
 
   try {
@@ -22,12 +22,12 @@ exports.registerUser = async (req, res) => {
 
     // Guardar el nuevo usuario en la base de datos
     await newUser.save();
-    res
+    return res
       .status(201)
       .json({ success: true, message: "Usuario registrado con éxito" });
   } catch (error) {
     console.error("Error al registrar el usuario:", error);
-    res
+    return res
       .status(500)
       .json({ success: false, message: "Error al registrar el usuario" });
   }
@@ -36,7 +36,6 @@ exports.registerUser = async (req, res) => {
 // Login de usuario
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log("Email recibido para login:", email);
 
   try {
     // Verificar si el usuario existe
@@ -44,25 +43,25 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ success: false, message: "Credenciales incorrectas" });
+        .json({ success: false, message: "Usuario no encontrado" });
     }
 
     // Verificar la contraseña
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log("Contraseña coincide:", isMatch);
+    console.log("Contraseña coincide:", isMatch); // Agregado para depuración
     if (!isMatch) {
       return res
         .status(400)
-        .json({ success: false, message: "Credenciales incorrectas" });
+        .json({ success: false, message: "Contraseña incorrecta" });
     }
 
     // Generar el token JWT
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "30d",
+      expiresIn: "30d", // Aquí puedes ajustar el tiempo de expiración según necesites
     });
 
     // Enviar respuesta con token y datos del usuario
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Inicio de sesión exitoso",
       token,
@@ -74,7 +73,7 @@ exports.loginUser = async (req, res) => {
     });
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
-    res
+    return res
       .status(500)
       .json({ success: false, message: "Error al iniciar sesión" });
   }
